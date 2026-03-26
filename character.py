@@ -20,7 +20,7 @@ class Character:
           
     
     def get_status(self):
-        print(f"{self._name} (Health: {self._health}/{self._max_health})")
+        return(f"{self._name} (Health: {self._health}/{self._max_health})")
 
 
 
