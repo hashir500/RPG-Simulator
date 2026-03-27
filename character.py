@@ -1,3 +1,4 @@
+
 # base class
 class Character:
     # attributes for character
@@ -21,7 +22,16 @@ class Character:
     
     def get_status(self):
         return(f"{self._name} (Health: {self._health}/{self._max_health})")
+    
+    def take_damage(self,damage):
+        self._health -= damage
+        self._health = max(0, self._health)
+        print(f"{self._name} took {damage} damage! Health is now {self._health}.")
+        if self._health == 0:
+            print(f"{self._name} has been defeated")
 
+    def attack(self, target):
+        target.take_damage(self._attack_power)
 
 
 
