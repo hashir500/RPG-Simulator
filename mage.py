@@ -4,7 +4,7 @@ from character import Character
 # initilizing warrior class
 class Mage(Character):
     def __init__(self, name):
-        super().__init__(name, health= 80, max_health = 80, attack_power = 30, speed = 7)
+        super().__init__(name, health= 100, max_health = 100, attack_power = 25, speed = 7)
 
         self._mana = 100
         self._mana_cost = 25
@@ -14,8 +14,8 @@ class Mage(Character):
             self._mana = self._mana - self._mana_cost
             return self._attack_power * 1.5
         else:
-            print("Not sufficent mana")
-            return
+            print("Not sufficient mana")
+            return 0
         
     def regenerate_mana(self,amount):
         self._mana += amount

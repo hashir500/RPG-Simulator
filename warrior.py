@@ -21,6 +21,6 @@ class Warrior(Character):
     def get_status(self):
         status = super().get_status()
         if self.is_enraged():
-            print(status + "ENRAGED")
+            print(status + " | ENRAGED")
         else:
             print(status)
