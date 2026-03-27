@@ -1,39 +1,27 @@
+
 from warrior import Warrior
 from mage import Mage
 from rogue import Rogue
-from combat_engine import resolve_attack
+from status_effects import StatusEffect
 
-w = Warrior("Aragorn")
-m = Mage("Albas")
-r = Rogue("Shadow")
+print("--- Status Effect Test ---")
+poison = StatusEffect(name="poisoned", damage_per_turn=8, duration=3)
 
-# test 1 — warrior attacks mage
-print("--- Warrior attacks Mage ---")
-result = resolve_attack(w, m)
-print(result)
-m.get_status()
+m2 = Mage("Zara")
+m2.apply_status(poison)
 
-# test 2 — mage attacks warrior
-print("--- Mage attacks Warrior ---")
-result = resolve_attack(m, w)
-print(result)
-w.get_status()
+print("--- Tick 1 ---")
+m2.tick_status_effects()
+m2.get_status()
 
-# test 3 — rogue attacks mage
-print("--- Rogue attacks Mage ---")
-result = resolve_attack(r, m)
-print(result)
-m.get_status()
+print("--- Tick 2 ---")
+m2.tick_status_effects()
+m2.get_status()
 
-# test 4 — drain mage health to 0 and check defeat message
-print("--- Defeat test ---")
-resolve_attack(w, m)
-resolve_attack(w, m)
-resolve_attack(w, m)
-resolve_attack(w, m)
-resolve_attack(w, m)
-m.get_status()
+print("--- Tick 3 ---")
+m2.tick_status_effects()
+m2.get_status()
 
-# test 5 — check defender_alive is False when defeated
-print("--- is_alive check ---")
-print(m.is_alive)
+print("--- Tick 4 (effect should be gone) ---")
+m2.tick_status_effects()
+m2.get_status()
