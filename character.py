@@ -1,4 +1,6 @@
-
+import json
+from character_schema import CharacterData
+from dataclasses import asdict
 # base class
 class Character:
     # attributes for character
@@ -59,5 +61,41 @@ class Character:
         for effect in self._status_effects:
             effect.apply(self)
         self._status_effects = [e for e in self._status_effects if e.duration > 0]
+
+
+    def save_to_json(self, filename):
+        data = CharacterData(
+            name=self._name,
+            health=self._health,
+            max_health=self._max_health,
+            attack_power=self._attack_power,
+            speed=self._speed
+        )
+        with open(filename, "w") as f:
+            json.dump(asdict(data), f, indent=2)
+
+        print(f"{self._name}'s state saved to {filename}")
+
+
+    @classmethod
+    def load_from_json(cls, filename):
+        try:
+            with open(filename, "r") as f:
+                data = json.load(f)
+            character = cls(
+                name=data["name"],
+                health=data["health"],
+                max_health=data["max_health"],
+                attack_power=data["attack_power"],
+                speed=data["speed"]
+            )
+            print(f"{data['name']} loaded successfully from {filename}")
+            return character
+        except FileNotFoundError:
+            print(f"Error: File '{filename}' was not found.")
+            return None
+        except json.JSONDecodeError:
+            print(f"Error: File '{filename}' is corrupted or not valid JSON.")
+            return None
 
 

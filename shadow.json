@@ -1,0 +1,7 @@
+{
+  "name": "Shadow",
+  "health": 120,
+  "max_health": 120,
+  "attack_power": 15,
+  "speed": 20
+}

@@ -1,27 +1,14 @@
-
 from warrior import Warrior
-from mage import Mage
-from rogue import Rogue
-from status_effects import StatusEffect
+from character import Character
 
-print("--- Status Effect Test ---")
-poison = StatusEffect(name="poisoned", damage_per_turn=8, duration=3)
+# save a character
+w = Warrior("Aragorn")
+w.save_to_json("aragorn.json")
 
-m2 = Mage("Zara")
-m2.apply_status(poison)
+# load it back
+loaded = Character.load_from_json("aragorn.json")
+print(loaded)
 
-print("--- Tick 1 ---")
-m2.tick_status_effects()
-m2.get_status()
-
-print("--- Tick 2 ---")
-m2.tick_status_effects()
-m2.get_status()
-
-print("--- Tick 3 ---")
-m2.tick_status_effects()
-m2.get_status()
-
-print("--- Tick 4 (effect should be gone) ---")
-m2.tick_status_effects()
-m2.get_status()
+# test file not found
+bad = Character.load_from_json("missing.json")
+print(bad)

@@ -1,0 +1,7 @@
+{
+  "name": "Albas",
+  "health": 100,
+  "max_health": 100,
+  "attack_power": 25,
+  "speed": 7
+}
