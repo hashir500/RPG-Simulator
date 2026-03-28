@@ -1,0 +1,7 @@
+{
+  "name": "hashir",
+  "health": 4,
+  "max_health": 200,
+  "attack_power": 20,
+  "speed": 10
+}
